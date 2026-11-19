@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101819">
+  <meta name="description" content="Mada — une image, une vidéo, un petit moment d’évasion.">
+  <title>Mada — L’artichaut volant</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌿%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="media.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="./" aria-label="Mada, accueil">mada<span>.</span></a><button id="share" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h6v6H3zm12 0h6v6h-6zM3 15h6v6H3zm12 0h2v2h-2zm4 0h2v6h-6v-2h4zM3 12h6m3-9v6m0 3h5m-5 3v6m7-9h2"/></svg>QR code</button></header>
+  <main>
+    <figure><div id="media"><img src="assets/artichaut-volant.jpg" alt="Un artichaut vert aux grandes ailes blanches vole parmi les nuages." fetchpriority="high" width="1672" height="941"></div><figcaption><h1 id="title">L’artichaut volant</h1><p id="caption">Un peu de légèreté.</p></figcaption></figure>
+  </main>
+  <footer>Une image. Une pause.</footer>
+  <dialog id="qr-dialog" aria-labelledby="qr-title" aria-describedby="qr-description">
+    <button id="close" class="close" type="button" aria-label="Fermer" autofocus>×</button>
+    <h2 id="qr-title">À emporter.</h2><p id="qr-description">Scannez ce QR code pour ouvrir la page.</p>
+    <img class="qr" src="assets/qr-code.svg" width="280" height="280" alt="QR code vers https://herve.niderb.fr/mada/">
+    <a class="page-url" href="https://herve.niderb.fr/mada/">herve.niderb.fr/mada</a>
+    <button id="copy" type="button">Copier le lien</button><p id="copy-status" role="status" aria-live="polite"></p>
+  </dialog>
+</body>
+</html>
