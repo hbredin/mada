@@ -1,6 +1,11 @@
-const config = window.MADA_MEDIA;
+const slides = window.MADA_MEDIA_LIST || [window.MADA_MEDIA].filter(Boolean);
+let activeSlide = 0;
 const container = document.querySelector('#media');
-if (config) {
+function showSlide(index) {
+  if (!slides.length) return;
+  activeSlide = (index + slides.length) % slides.length;
+  const config = slides[activeSlide];
+  container.querySelector('video')?.pause();
   const media = document.createElement(config.type === 'video' ? 'video' : 'img');
   media.src = config.src;
   if (config.type === 'video') {
@@ -17,7 +22,20 @@ if (config) {
   document.querySelector('#title').textContent = config.title;
   document.querySelector('#caption').textContent = config.caption || '';
   document.title = `Mada — ${config.title}`;
+  document.querySelector('#slide-count').textContent = `${activeSlide + 1} / ${slides.length}`;
 }
+const navigation = document.querySelector('#carousel-navigation');
+navigation.hidden = slides.length < 2;
+document.querySelector('#previous').addEventListener('click', () => showSlide(activeSlide - 1));
+document.querySelector('#next').addEventListener('click', () => showSlide(activeSlide + 1));
+document.querySelector('#carousel').addEventListener('keydown', event => {
+  if (event.target.closest('video') || slides.length < 2) return;
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    event.preventDefault();
+    showSlide(activeSlide + (event.key === 'ArrowRight' ? 1 : -1));
+  }
+});
+showSlide(0);
 const dialog = document.querySelector('#qr-dialog');
 document.querySelector('#share').addEventListener('click', () => dialog.showModal());
 document.querySelector('#close').addEventListener('click', () => dialog.close());

@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="style.css">
   <script src="media.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="camera.js" defer></script>
 </head>
 <body>
-  <header><a class="brand" href="./" aria-label="Mada, accueil">mada<span>.</span></a><button id="share" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h6v6H3zm12 0h6v6h-6zM3 15h6v6H3zm12 0h2v2h-2zm4 0h2v6h-6v-2h4zM3 12h6m3-9v6m0 3h5m-5 3v6m7-9h2"/></svg>QR code</button></header>
+  <header><a class="brand" href="./" aria-label="Mada, accueil">mada<span>.</span></a><div class="header-actions"><button id="open-camera" type="button" aria-haspopup="dialog">Prendre une photo</button><button id="share" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h6v6H3zm12 0h6v6h-6zM3 15h6v6H3zm12 0h2v2h-2zm4 0h2v6h-6v-2h4zM3 12h6m3-9v6m0 3h5m-5 3v6m7-9h2"/></svg>QR code</button></div></header>
   <main>
-    <figure><div id="media"><img src="assets/artichaut-volant.jpg" alt="Un artichaut vert aux grandes ailes blanches vole parmi les nuages." fetchpriority="high" width="1672" height="941"></div><figcaption><h1 id="title">L’artichaut volant</h1><p id="caption">Un peu de légèreté.</p></figcaption></figure>
+    <figure id="carousel" role="region" aria-roledescription="carrousel" aria-label="Images et vidéos" tabindex="0"><div id="media"><img src="assets/artichaut-volant.jpg" alt="Un artichaut vert aux grandes ailes blanches vole parmi les nuages." fetchpriority="high" width="1672" height="941"></div><figcaption><h1 id="title">L’artichaut volant</h1><p id="caption">Un peu de légèreté.</p></figcaption><nav id="carousel-navigation" aria-label="Navigation du carrousel" hidden><button id="previous" type="button">Précédent</button><span id="slide-count" role="status" aria-live="polite"></span><button id="next" type="button">Suivant</button></nav></figure>
   </main>
   <footer>Une image. Une pause.</footer>
   <dialog id="qr-dialog" aria-labelledby="qr-title" aria-describedby="qr-description">
@@ -23,6 +24,20 @@
     <img class="qr" src="assets/qr-code.svg" width="280" height="280" alt="QR code vers https://herve.niderb.fr/mada/">
     <a class="page-url" href="https://herve.niderb.fr/mada/">herve.niderb.fr/mada</a>
     <button id="copy" type="button">Copier le lien</button><p id="copy-status" role="status" aria-live="polite"></p>
+  </dialog>
+  <dialog id="camera-dialog" aria-labelledby="camera-title" aria-describedby="camera-description">
+    <button id="close-camera" class="close" type="button" aria-label="Fermer la caméra" autofocus>×</button>
+    <h2 id="camera-title">À vous de jouer.</h2>
+    <p id="camera-description">Cadrez votre image, puis déclenchez quand vous êtes prêt. Aucune photo n’est envoyée.</p>
+    <video id="camera-live" autoplay muted playsinline aria-label="Aperçu de la webcam"></video>
+    <img id="camera-photo" hidden alt="Photo à valider avant de la conserver">
+    <p id="camera-status" role="status" aria-live="polite"></p>
+    <div class="camera-actions">
+      <button id="capture" type="button" disabled>Prendre la photo</button>
+      <button id="retake" type="button" hidden>Recommencer</button>
+      <button id="keep-photo" type="button" hidden>Valider et télécharger</button>
+    </div>
+    <p class="camera-note">Après validation, la photo apparaît dans votre carrousel local et se télécharge sur votre appareil. Pour la publier pour tous, transmettez-moi ensuite le fichier dans notre conversation. Cet aperçu disparaît à la fermeture ou au rechargement de la page.</p>
   </dialog>
 </body>
 </html>
