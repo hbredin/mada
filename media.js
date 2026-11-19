@@ -6,4 +6,10 @@ window.MADA_MEDIA_LIST = [{
   caption: "Un peu de légèreté.",
   alt: "Un artichaut vert aux grandes ailes blanches vole parmi les nuages.",
   // poster: "assets/apercu.jpg", // facultatif, pour une vidéo
+}, {
+  type: "image",
+  src: "assets/dessin.jpg",
+  title: "Le dessin",
+  caption: "Un trait, une idée.",
+  alt: "Une feuille tenue devant la caméra, avec un dessin au crayon composé de lignes courbes et droites.",
 }];
